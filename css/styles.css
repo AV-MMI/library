@@ -1,0 +1,191 @@
+/* || GENERAL STYLES*/
+@font-face {
+	font-family: "Inconsolata";
+	src: url("../fonts/inconsolata/Inconsolata-VariableFont_wdth,wght.ttf") format("truetype");
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #F5F7F9;
+	padding: 0;
+}
+
+main {
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-bottom: 30px;
+}
+
+button {
+	border: 0;
+	cursor: pointer;
+}
+
+h1 {
+	font-family: "Inconsolata";
+	font-size: 70px;
+	font-weight: 600;
+}
+
+p {
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+footer {
+	background-color: #363d46;
+	color: #f3eee0;
+	padding: 5px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+/* || LIBRARY STYLE*/
+.addBook-container {
+	margin-right: 150px;
+	margin-top: 50px;
+	margin-bottom: 70px;
+}
+
+.addBook {
+	font-size: 20px;
+	border-radius: 20px;
+}
+
+/* || WANT TO ADD ANOTHER BOOK -- FOLD*/
+.fold {
+	background-color: #f0f0f0;
+	height: 0;
+	overflow: auto;
+	/*border-left: 1px solid #cdd0eb;
+	border-right: 1px solid #cdd0eb;
+	border-bottom: 1px solid #cdd0eb;*/
+	width: 95%;
+	/*height: 200px;*/
+}
+
+.input {
+	margin-top: 15px;
+	width: 80%;
+	padding: 5px;
+	height: 20px;
+	border-radius: 10px;
+	border: 1px solid black;
+}
+
+.have-read {
+	margin-top: 15px;
+}
+
+/* || BOOKSHELVES STYLE*/
+.tag {
+	width: 140px;
+	height: 40px;
+	border-top:;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	background-color: #f0f0f0;
+	border-left: 1px solid #cdd0eb;
+	border-top: 1px solid #cdd0eb;
+	border-right: 1px solid #cdd0eb;
+}
+
+.bookshelf {
+	width: 600px;
+	height: 350px;
+	background-color: #f0f0f0;
+	border: 1px solid #cdd0eb;
+	overflow: auto;
+}
+
+.book {
+	background-color: #e0e0e0;
+	padding: 15px 0;
+	border-top: 1px solid #cdd0cb;
+	border-bottom: 1px solid #cdd0cb;
+	margin-top: 10px;
+  	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.close {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 10px;
+}
+
+.close img {
+	width: 15px;
+}
+
+.book-info {
+	font-size: 20px;
+	font-family: Inconsolata;
+}
+
+.toggle {
+	width: 50px;
+	height: 25px;
+	background-color: #bbbbbb;
+	margin-right: 15px;
+	border-radius: 15px;
+	transition: 1s;
+	cursor: pointer;
+}
+
+.toggle-active {
+	background-color: #eeeeee;
+}
+
+.circle {
+	background-color: #756d6d;
+	width: 25px;
+	height: 25px;
+	border-radius: 100%;
+	transition: 1s;
+}
+
+.circle-active {
+	background-color: #16e79a;
+	position: relative;
+	left: 25px;
+}
+
+/* || FOOTER*/
+
+
+/* || UTILITIES*/
+.divisor {
+	display: flex;
+	justify-content: space-between;
+}
+
+.vertical {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.btn {
+	padding: 10px 15px;
+	border: 1px solid #cdd0eb;
+	background-color: #e8eaeb;
+	cursor: pointer;
+}
+
+.btn:active {
+	background-color: #e8efeb;
+}
