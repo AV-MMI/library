@@ -12,74 +12,74 @@
 	<main>
 		<section id="library" class="divisor">
 			<div id="text">
-				<h1 id="title">Library</h1>
-				<p>a project from <a href="https://www.theodinproject.com">The Odin Project</a>.</p>
+				<h1 id="title" class="incon-font">Library</h1>
+				<p class="font-20">a project from <a href="https://www.theodinproject.com">The Odin Project</a>.</p>
 			</div>
-
 			<div id="addBook-container" class="addBook-container vertical">
-				<button id="addBook" class="btn addBook">Want to add another book?</button>
-				<div class="fold">
+				<button id="addBook" class="btn addBook font-20">Want to add another book?</button>
+				<div id="fold" class="fold vertical">
 					<form class="vertical">
-						<input type="text" name="book-title" id="in-title" placeholder="Book Title" class="input">
+						<input type="text" name="book-title" id="in-title" placeholder="Book Title" class="input" required>
 
-						<input type="text" name="book-author" id="in-author" placeholder="Name of the author" class="input">
+						<input type="text" name="book-author" id="in-author" placeholder="Name of the author" class="input" required>
 
 						<input type="number" name="book-pages" id="in-pages" placeholder="Number of pages" min="0" class="input">
-
-						<div class="have-read">
+					</form>
+					<form>
+						<div class="haveRead">
 							<span>Have you read this book?</span>
 							<div class="divisor">
 								<div>
-									<input type="radio" name="have-read" id="have-read">
+									<input type="radio" name="have-read" id="radioYes">
 									<label for="yes">Yes</label>
 								</div>
 
 								<div>
-									<input type="radio" name="have-read" id="haventRead">
+									<input type="radio" name="have-read" id="radioNo">
 									<label for="no">No</label>
 								</div>
 							</div>
 						</div>
 					</form>
+
+					<button id="create-book" class="btn submit">Create book</button>
+					<div id="close" class="close"> CLOSE</div>
 				</div>
 			</div>
 		</section>
 
-		<section id="bookshelves-container" class="divisor">
+		<section id="bookshelves-container" class="divisor transition-1">
 			<div id="noRead">
-				<div class="tag">
+				<div class="tag font-20">
 					<span class="text">Didn't Read</span>
 				</div>
-				<div class="bookshelf">
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">The Hobbit, by J.R.R Tolkien, 310 pages</span><div class="toggle"><div class="circle"></div></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">The Hobbit, by J.R.R Tolkien, 310 pages</span><div class="toggle toggle-active"><div class="circle circle-active"></div></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">Tsa Hobbit, by AVssaA, 3130 pages</span><div class="toggle"></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">The Hobbit, by J.R.R Tolkien, 310 pages</span><div class="toggle"></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">The Hobbit, by J.R.R Tolkien, 310 pages</span><div class="toggle"></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">Tsa Hobbit, by AVssaA, 3130 pages</span><div class="toggle"></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">The Hobbit, by J.R.R Tolkien, 310 pages</span><div class="toggle"></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">The Hobbit, by J.R.R Tolkien, 310 pages</span><div class="toggle"></div></div>
-					<div class="book"><button class="close btn"><img src="./img/icons/close.svg"></button><span class="book-info">Tsa Hobbit, by AVssaA, 3130 pages</span><div class="toggle"></div></div>
+				<div id="noRead-bookshelf" class="bookshelf">
+
 				</div>
 			</div>
 
 			<div id="Read">
-				<div class="tag">
+				<div class="tag font-20">
 					<span class="text">Read</span>
 				</div>
-				<div class="bookshelf">
+				<div id="read-bookshelf" class="bookshelf">
 
 				</div>
 			</div>
 		</section>
 	</main>
-	<footer class="divisor">
-		<div id="git">
-			<a href="https://github.com/AV-MMI"><img src="./img/icons/GitHub-Mark-Light-32px.png
-" alt=""></a>
-		</div>
-		<div id="store">
+	<footer>
+		<div class="footer-container divisor">
+			<div id="git" class="git">
+				<a href="https://github.com/AV-MMI"><img src="./img/icons/GitHub-Mark-Light-32px.png
+				" alt=""></a>
+			</div>
+			<div id="store" class="store">
+				<button class="btn st-btn">Cloud</button>
+				<button class="btn st-btn">Local</button>
+			</div>
 		</div>
 	</footer>
+	<script src="./js/script.js"></script>
 </body>
 </html>

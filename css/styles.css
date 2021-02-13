@@ -4,10 +4,6 @@
 	src: url("../fonts/inconsolata/Inconsolata-VariableFont_wdth,wght.ttf") format("truetype");
 }
 
-html {
-	height: 100%;
-}
-
 body {
 	background-color: #F5F7F9;
 	padding: 0;
@@ -17,7 +13,7 @@ main {
 	padding-top: 20px;
 	padding-left: 20px;
 	padding-right: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 button {
@@ -26,13 +22,11 @@ button {
 }
 
 h1 {
-	font-family: "Inconsolata";
 	font-size: 70px;
 	font-weight: 600;
 }
 
 p {
-	font-size: 20px;
 	margin-top: 10px;
 }
 
@@ -43,10 +37,7 @@ a {
 footer {
 	background-color: #363d46;
 	color: #f3eee0;
-	padding: 5px;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
+	margin-top: 41px;
 }
 
 /* || LIBRARY STYLE*/
@@ -54,23 +45,22 @@ footer {
 	margin-right: 150px;
 	margin-top: 50px;
 	margin-bottom: 70px;
+	position: relative;
+	bottom: 0px;
+	transition: 1s;
 }
 
 .addBook {
-	font-size: 20px;
 	border-radius: 20px;
 }
 
 /* || WANT TO ADD ANOTHER BOOK -- FOLD*/
 .fold {
 	background-color: #f0f0f0;
-	height: 0;
-	overflow: auto;
-	/*border-left: 1px solid #cdd0eb;
-	border-right: 1px solid #cdd0eb;
-	border-bottom: 1px solid #cdd0eb;*/
+	overflow: hidden;
 	width: 95%;
-	/*height: 200px;*/
+	height: 0px;
+	transition: 1s;
 }
 
 .input {
@@ -82,8 +72,21 @@ footer {
 	border: 1px solid black;
 }
 
-.have-read {
-	margin-top: 15px;
+.haveRead {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.submit {
+	margin-bottom: 20px;
+}
+
+.close {
+	background-color: black;
+	color: white;
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
 }
 
 /* || BOOKSHELVES STYLE*/
@@ -94,7 +97,6 @@ footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 20px;
 	background-color: #f0f0f0;
 	border-left: 1px solid #cdd0eb;
 	border-top: 1px solid #cdd0eb;
@@ -120,29 +122,24 @@ footer {
 	justify-content: space-between;
 }
 
-.close {
+.remove {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-left: 10px;
 }
 
-.close img {
+.remove img {
 	width: 15px;
 }
 
-.book-info {
-	font-size: 20px;
-	font-family: Inconsolata;
-}
-
+/* || TOGGLE BUTTON STYLE*/
 .toggle {
 	width: 50px;
 	height: 25px;
 	background-color: #bbbbbb;
 	margin-right: 15px;
 	border-radius: 15px;
-	transition: 1s;
 	cursor: pointer;
 }
 
@@ -155,7 +152,6 @@ footer {
 	width: 25px;
 	height: 25px;
 	border-radius: 100%;
-	transition: 1s;
 }
 
 .circle-active {
@@ -165,7 +161,32 @@ footer {
 }
 
 /* || FOOTER*/
+.footer-container {
+	padding: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
 
+.git{
+
+	display: flex;
+	align-items: center;
+}
+
+.store {
+	display: flex;
+	align-items: center;
+}
+
+.st-btn:first-child {
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+.st-btn:last-child {
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
 
 /* || UTILITIES*/
 .divisor {
@@ -177,6 +198,15 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.font-20{
+	font-size: 20px;
+}
+
+.incon-font {
+	font-family: inconsolata;
+	cursor: zoom-in;
 }
 
 .btn {
