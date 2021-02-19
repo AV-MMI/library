@@ -16,15 +16,12 @@ Book.prototype.info = function(){
 	return this.title + ", " + "by " + this.author + ", " + this.pages + " pages";
 }
 
-const hobbit = new Book("The hobbit", "J.R.R Tolkien", 314, false, 0);
-library.push(hobbit);
-const potter = new Book("Harry Potter", "J.K Rolling", 567, true, 1) ;
-library.push(potter);
-const history = new Book("The clash of empires", "Future self", 8883, false, 2);
-library.push(history);
-const cook = new Book("The cuisine of the earth", "Alien self", 5900, true, 3);
-library.push(cook);
 
+const def = [];
+const hobbit = new Book("The hobbit", "J.R.R Tolkien", 314, false, 0);
+def.push(hobbit);
+const potter = new Book("Harry Potter", "J.K Rolling", 567, true, 1) ;
+def.push(potter);
 
 /*
 Variables
@@ -153,6 +150,8 @@ const funcs = {
 			const tome = new Book(title.value, author.value, pages.value, boolRead, lastItem+1);
 
 			library.push(tome)
+			updateLibrary()
+
 			title.value = "";
 			author.value = "";
 			pages.value = "";
@@ -163,9 +162,17 @@ const funcs = {
 	},
 
 	//--- | DISPLAY BOOK
-	displayBook: function(){
-		for(let i = 0; i < library.length; i++){
-			funcs.createBookEl(funcs.bookshelfOrg(library[i]), library[i].info(), library[i].boolRead, i);
+	displayBook: function(obj){
+		for(let i = 0; i < obj.length; i++){
+			if("info" in obj[i]){
+				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, i);
+			} else {
+				obj[i].info = () => {
+					return obj[i].title + ", " + "by " + obj[i].author + ", " + obj[i].pages + " pages";
+				}
+
+				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, i);
+			}
 		}
 	},
 
@@ -205,6 +212,7 @@ const funcs = {
 			parentEl = e.target.parentElement.parentElement;
 			parentEl.remove();
 			funcs.deleteItem(library, "id", parentEl.id);
+			updateLibrary()
 		}
 	},
 
@@ -235,6 +243,7 @@ const funcs = {
 
 			funcs.createBookEl(funcs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
 			parentEl.remove();
+			updateLibrary()
 		}
 
 		if(!toggleEl.classList.contains("toggle-active")){
@@ -243,6 +252,7 @@ const funcs = {
 
 			funcs.createBookEl(funcs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
 			parentEl.remove();
+			updateLibrary()
 		}
 	}
 }
@@ -259,4 +269,3 @@ fold.addEventListener("transitionend", funcs.transition);
 createBtn.addEventListener("click", funcs.tomeObj);
 
 	//--- | DISPLAY BOOK
-funcs.displayBook();
