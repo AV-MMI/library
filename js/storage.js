@@ -1,5 +1,3 @@
-let actualLibrary;
-
 if(localStorage.getItem("library")){
     getLibrary();
 } else {

@@ -146,8 +146,8 @@ const funcs = {
 	tomeObj: function(e){
 		funcs.boolRead();
 		if(title.value !== "" && author.value !== ""){
-			const lastItem = library.length-1;
-			const tome = new Book(title.value, author.value, pages.value, boolRead, lastItem+1);
+			const lastItem = library.length;
+			const tome = new Book(title.value, author.value, pages.value, boolRead, lastItem);
 
 			library.push(tome)
 			updateLibrary()
@@ -157,7 +157,7 @@ const funcs = {
 			pages.value = "";
 
 										//Bookshelf  						Info 							status 					id;
-			funcs.createBookEl(funcs.bookshelfOrg(library[lastItem+1]),library[lastItem+1].info(), library[lastItem+1].boolRead, lastItem+1);
+			funcs.createBookEl(funcs.bookshelfOrg(library[lastItem]),library[lastItem].info(), library[lastItem].boolRead, lastItem);
 		}
 	},
 
@@ -165,13 +165,13 @@ const funcs = {
 	displayBook: function(obj){
 		for(let i = 0; i < obj.length; i++){
 			if("info" in obj[i]){
-				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, i);
+				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, obj[i].id);
 			} else {
 				obj[i].info = () => {
 					return obj[i].title + ", " + "by " + obj[i].author + ", " + obj[i].pages + " pages";
 				}
 
-				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, i);
+				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, obj[i].id);
 			}
 		}
 	},
@@ -185,15 +185,18 @@ const funcs = {
 			}
 		}
 
-		if(target == 0){
-			library = library.slice(0, library.length);
+		if(target == 0 && library.length == 1){
+			library = [];
+		}
+		if(target == 0 && library.length > 1){
+			library = library.slice(1, library.length);
 		}
 
-		if(target == library.length-1){
+		if(target == library.length-1 && target !== 0){
 			library = library.slice(0,library.length-1);
 		}
 
-		else{
+		if(target > 0 && target < library.length-1){
 			let firstPart = library.slice(0, target);
 			let secondPart = library.slice(target+1, library.length);
 
@@ -204,15 +207,16 @@ const funcs = {
 	remove: function(e){
 		let parentEl = e.target.parentElement;
 		if(String(parentEl) == "[object HTMLDivElement]"){
-			parentEl.remove();
 			funcs.deleteItem(library, "id", parentEl.id);
+			parentEl.remove();
+			updateLibrary();
 		}
 
 		if(String(parentEl) == "[object HTMLButtonElement]"){
 			parentEl = e.target.parentElement.parentElement;
-			parentEl.remove();
 			funcs.deleteItem(library, "id", parentEl.id);
-			updateLibrary()
+			parentEl.remove();
+			updateLibrary();
 		}
 	},
 
@@ -243,7 +247,8 @@ const funcs = {
 
 			funcs.createBookEl(funcs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
 			parentEl.remove();
-			updateLibrary()
+
+			updateLibrary();
 		}
 
 		if(!toggleEl.classList.contains("toggle-active")){
@@ -252,7 +257,8 @@ const funcs = {
 
 			funcs.createBookEl(funcs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
 			parentEl.remove();
-			updateLibrary()
+
+			updateLibrary();
 		}
 	}
 }
@@ -268,4 +274,3 @@ fold.addEventListener("transitionend", funcs.transition);
 	//--- | CREATE BOOK
 createBtn.addEventListener("click", funcs.tomeObj);
 
-	//--- | DISPLAY BOOK
