@@ -174,21 +174,6 @@ footer {
 	align-items: center;
 }
 
-.store {
-	display: flex;
-	align-items: center;
-}
-
-.st-btn:first-child {
-	border-top-left-radius: 15px;
-	border-bottom-left-radius: 15px;
-}
-
-.st-btn:last-child {
-	border-top-right-radius: 15px;
-	border-bottom-right-radius: 15px;
-}
-
 /* || UTILITIES*/
 .divisor {
 	display: flex;

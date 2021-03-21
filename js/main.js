@@ -17,16 +17,15 @@ Book.prototype.info = function(){
 }
 
 
-const def = [];
+const defVal = [];
 const hobbit = new Book("The hobbit", "J.R.R Tolkien", 314, false, 0);
-def.push(hobbit);
+defVal.push(hobbit);
 const potter = new Book("Harry Potter", "J.K Rolling", 567, true, 1) ;
-def.push(potter);
+defVal.push(potter);
 
 /*
 Variables
 */
-const testing = document.querySelector("#testing");
 
 	//--- | WANT TO ADD ANOTHER BOOK
 const addBookCont = document.querySelector("#addBook-container");
@@ -56,7 +55,7 @@ const removeList = document.getElementsByClassName("remove");
 /*
 Methods
 */
-const funcs = {
+const mainFuncs = {
 	//--- | WANT TO ADD ANOTHER BOOK
 	unfold: function(e){
 		fold.style.height = "290px";
@@ -105,7 +104,7 @@ const funcs = {
 		remove.appendChild(img);
 
 		//EventListener in each element that is created.
-		remove.addEventListener("click", funcs.remove)
+		remove.addEventListener("click", mainFuncs.remove)
 
 		const bookInfo = document.createElement("span");
 		bookInfo.classList.add("book-info");
@@ -115,7 +114,7 @@ const funcs = {
 
 		const toggle = document.createElement("div");
 		toggle.classList.add("toggle");
-		toggle.addEventListener("click", funcs.toggle);
+		toggle.addEventListener("click", mainFuncs.toggle);
 
 		const circle = document.createElement("div");
 		circle.classList.add("circle");
@@ -144,20 +143,20 @@ const funcs = {
 	},
 
 	tomeObj: function(e){
-		funcs.boolRead();
+		mainFuncs.boolRead();
 		if(title.value !== "" && author.value !== ""){
 			const lastItem = library.length;
 			const tome = new Book(title.value, author.value, pages.value, boolRead, lastItem);
 
 			library.push(tome)
-			updateLibrary()
+			storageFuncs.updateStorage();
 
 			title.value = "";
 			author.value = "";
 			pages.value = "";
 
 										//Bookshelf  						Info 							status 					id;
-			funcs.createBookEl(funcs.bookshelfOrg(library[lastItem]),library[lastItem].info(), library[lastItem].boolRead, lastItem);
+			mainFuncs.createBookEl(mainFuncs.bookshelfOrg(library[lastItem]),library[lastItem].info(), library[lastItem].boolRead, lastItem);
 		}
 	},
 
@@ -165,13 +164,13 @@ const funcs = {
 	displayBook: function(obj){
 		for(let i = 0; i < obj.length; i++){
 			if("info" in obj[i]){
-				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, obj[i].id);
+				mainFuncs.createBookEl(mainFuncs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, obj[i].id);
 			} else {
 				obj[i].info = () => {
 					return obj[i].title + ", " + "by " + obj[i].author + ", " + obj[i].pages + " pages";
 				}
 
-				funcs.createBookEl(funcs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, obj[i].id);
+				mainFuncs.createBookEl(mainFuncs.bookshelfOrg(obj[i]), obj[i].info(), obj[i].boolRead, obj[i].id);
 			}
 		}
 	},
@@ -207,16 +206,16 @@ const funcs = {
 	remove: function(e){
 		let parentEl = e.target.parentElement;
 		if(String(parentEl) == "[object HTMLDivElement]"){
-			funcs.deleteItem(library, "id", parentEl.id);
+			mainFuncs.deleteItem(library, "id", parentEl.id);
 			parentEl.remove();
-			updateLibrary();
+			storageFuncs.updateStorage();
 		}
 
 		if(String(parentEl) == "[object HTMLButtonElement]"){
 			parentEl = e.target.parentElement.parentElement;
-			funcs.deleteItem(library, "id", parentEl.id);
+			mainFuncs.deleteItem(library, "id", parentEl.id);
 			parentEl.remove();
-			updateLibrary();
+			storageFuncs.updateStorage();
 		}
 	},
 
@@ -245,20 +244,20 @@ const funcs = {
 			targetItem = library.find((item)=> item.id == bookId);
 			targetItem.boolRead = true;
 
-			funcs.createBookEl(funcs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
+			mainFuncs.createBookEl(mainFuncs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
 			parentEl.remove();
 
-			updateLibrary();
+			storageFuncs.updateStorage();
 		}
 
 		if(!toggleEl.classList.contains("toggle-active")){
 			targetItem = library.find((item)=> item.id == bookId);
 			targetItem.boolRead = false;
 
-			funcs.createBookEl(funcs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
+			mainFuncs.createBookEl(mainFuncs.bookshelfOrg(targetItem), targetItem.info(), targetItem.boolRead, targetItem.id);
 			parentEl.remove();
 
-			updateLibrary();
+			storageFuncs.updateStorage();
 		}
 	}
 }
@@ -267,10 +266,10 @@ const funcs = {
 Inits & Event Listeners
 */
 	//--- | WANT TO ADD ANOTHER BOOK
-addBookBtn.addEventListener("click", funcs.unfold);
-close.addEventListener("click", funcs.fold);
-fold.addEventListener("transitionend", funcs.transition);
+addBookBtn.addEventListener("click", mainFuncs.unfold);
+close.addEventListener("click", mainFuncs.fold);
+fold.addEventListener("transitionend", mainFuncs.transition);
 
 	//--- | CREATE BOOK
-createBtn.addEventListener("click", funcs.tomeObj);
+createBtn.addEventListener("click", mainFuncs.tomeObj);
 
