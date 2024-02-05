@@ -144,7 +144,8 @@ const mainFuncs = {
 
 	tomeObj: function(e){
 		mainFuncs.boolRead();
-		if(title.value !== "" && author.value !== ""){
+
+		if(title.reportValidity() && author.reportValidity() && pages.reportValidity()){
 			const lastItem = library.length;
 			const tome = new Book(title.value, author.value, pages.value, boolRead, lastItem);
 
@@ -157,6 +158,49 @@ const mainFuncs = {
 
 										//Bookshelf  						Info 							status 					id;
 			mainFuncs.createBookEl(mainFuncs.bookshelfOrg(library[lastItem]),library[lastItem].info(), library[lastItem].boolRead, lastItem);
+		} else {
+
+			// display error messages
+			if(!title.reportValidity()){
+				let validityState = title.validity;
+				if(validityState.valueMissing){
+					title.setCustomValidity("Bro, it's empty...");
+
+				}
+				else {
+					title.setCustomValidity("");
+				}
+			}
+
+			else if(!author.reportValidity()){
+
+				let validityState = author.validity;
+				if(validityState.valueMissing){
+					author.setCustomValidity("Bro, it's empty...")
+
+				}
+				else {
+					author.setCustomValidity("");
+				}
+			}
+
+			else if(!pages.reportValidity()){
+				let validityState = pages.validity;
+				console.log(validityState, '<<')
+				if(validityState.valueMissing){
+					pages.setCustomValidity("Insert number of pages");
+
+				} 
+				
+				else if(validityState.badInput){
+					pages.setCustomValidity("This is not a number");
+
+				}
+
+				else {
+					pages.setCustomValidity("");
+				}
+			}
 		}
 	},
 
